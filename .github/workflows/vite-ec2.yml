@@ -41,5 +41,4 @@ jobs:
            script: |
              sudo apt-get update
              cd home
-             npm install
-             npm build
+             echo "EC2 instance..."
