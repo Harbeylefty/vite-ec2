@@ -43,6 +43,6 @@ jobs:
              sudo apt-get install nodejs -y
              sudo npm install pm2 -g
              cd home
-             sudo pm2 start src/App.jsx --name=backendserver
+             pm2 start src/App.jsx --name=backendserver
       - name: Restart Server
         run: sudo pm2 restart backendserver
