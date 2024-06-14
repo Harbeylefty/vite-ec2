@@ -37,7 +37,6 @@ jobs:
            host: ${{ secrets.HOST_DNS  }}
            username: ${{ secrets.USERNAME }}
            key: ${{ secrets.SSH_PRIVATE_KEY }}
-           port: ${{ secrets.PORT }}
            script: |
              echo "Deploy to EC2..."
              echo "deploying..."
