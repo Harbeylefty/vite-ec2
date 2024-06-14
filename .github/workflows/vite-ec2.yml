@@ -45,4 +45,4 @@ jobs:
              cd home
              pm2 start src/App.jsx --name=backendserver
       - name: Restart Server
-        run: sudo pm2 restart backendserver
+        run:  pm2 restart backendserver
