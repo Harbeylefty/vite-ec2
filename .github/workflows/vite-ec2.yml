@@ -24,24 +24,21 @@ jobs:
       - name: Build code
         run: npm run build --if-present
     # deploy job to server
-  deploy: 
-      runs-on: ubuntu-latest
-      steps: 
-        - name: Deploy to server
-          uses:  easingthemes/ssh-deploy@v5.0.3
-          with:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            REMOTE_HOST:  ${{ secrets.HOST_DNS }}
-            REMOTE_USER: ${{ secrets.USERNAME }}
-            TARGET_DIR: ${{ secrets.TARGET_DIR }}
-        - name: Executing ssh commands using ssh key
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.HOST_DNS  }}
-            username: ${{ secrets.USERNAME }}
-            key: ${{ secrets.EC2_SSH_KEY }}
-            script: |
-              sudo apt-get update
-              cd home
-              npm install
-              npm build
+      - name: Deploy to server
+        uses:  easingthemes/ssh-deploy@v5.0.3
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST:  ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET_DIR: ${{ secrets.TARGET_DIR }}
+      - name: Executing ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+           host: ${{ secrets.HOST_DNS  }}
+           username: ${{ secrets.USERNAME }}
+           key: ${{ secrets.EC2_SSH_KEY }}
+           script: |
+             sudo apt-get update
+             cd home
+             npm install
+             npm build
